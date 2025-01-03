@@ -5,7 +5,6 @@ This project focuses on building and managing databases for **online retail appl
 
 ## Key Files
 - **OrderDB.sql**: The core SQL script for creating and managing the online store’s order-related data.
-- **_$_FILE_1.docx**: Supporting documentation and data.
 - **exp2-solution-template.sql**: Solution template for database queries and analysis.
 - **question_4.py**: Python script to process data related to specific retail queries.
 - **question_5.py**: Another Python script for analyzing different aspects of retail data.
