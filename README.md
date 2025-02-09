@@ -2,91 +2,91 @@
 
 ## Experiment Environment
 
-- SQL
-- Visual Studio Code
-- MySQL Database
+- **SQL Version:** MySQL
+- **Development Tools:** Visual Studio Code
+- **Database System:** MySQL Database
 
-## Experiment Process
+## Experiment Process and Results
 
 ### 1.1 Stored Procedure: Query Customer Orders for a Specific Product
 
-**Problem Description:**
-The stored procedure retrieves customer ID, customer name, order ID, order quantity, and order amount for a given product name, sorted in descending order of order amount.
+**Problem Overview:**
+This procedure is designed to retrieve detailed customer order information for a specific product. It returns customer IDs, names, order IDs, quantities, and the total order amount, with results sorted by descending order amounts.
 
 - **Execution Results:**
-   - For the product "32M DRAM", the query returns a list of customers and their orders, sorted by order amount.
+   - For the input product name "32M DRAM", the procedure effectively returns a sorted list of customers, along with their respective orders, in descending order of the order amount. This allows for quick analysis of which customers are purchasing the most expensive quantities of the given product.
 
 ### 1.2 Stored Procedure: Query Employees Hired Before a Given Employee
 
-**Problem Description:**
-The stored procedure retrieves employee ID, name, gender, hire date, and department for employees hired before the given employee ID in the same department.
+**Problem Overview:**
+This stored procedure queries employees who were hired before a specified employee within the same department, providing their employee IDs, names, genders, hire dates, and departmental affiliation.
 
 - **Execution Results:**
-   - For employee "E2008005", the query returns employees hired before this individual in the same department.
+   - Running this procedure with the employee ID "E2008005" retrieves all employees in the same department who were hired before this individual, offering insights into departmental seniority and hire trends.
 
 ### 2.1 Stored Function: Calculate Average Order Price of a Product
 
-**Problem Description:**
-The stored function returns the average order price for a given product name.
+**Problem Overview:**
+The function calculates the average order price for a product by dividing the total price of orders by the total quantity ordered. This offers an overview of pricing trends for a particular product.
 
 - **Execution Results:**
-   - For a product like "32M DRAM", the function returns an average price based on the order quantity and total price for all orders of that product.
+   - For the product "32M DRAM", the function calculates an average price that accounts for both quantity and total price of orders, providing valuable data for pricing strategy adjustments or marketing analyses.
 
 ### 2.2 Stored Function: Calculate Total Sales Quantity of a Product
 
-**Problem Description:**
-The stored function calculates the total sales quantity for a given product ID. Products with sales greater than 4 are retrieved.
+**Problem Overview:**
+This function computes the total sales quantity for a given product by summing up all order quantities where the product is listed. It also includes a filter to return only those products with sales quantities exceeding a threshold of 4.
 
 - **Execution Results:**
-   - The query returns products with total sales greater than 4 units, showing the product number, name, and sales quantity.
+   - The query efficiently returns products with total sales greater than 4 units, enabling the identification of best-sellers within the catalog, which can inform inventory management or promotional strategies.
 
 ### 3.1 Constraint: Limit Product Price
 
-**Problem Description:**
-When inserting a product, if the price exceeds 1000, it will be capped at 1000.
+**Problem Overview:**
+This trigger enforces a constraint that caps product prices at 1000. If an attempt is made to insert a product priced above this limit, the price is automatically adjusted to 1000.
 
 - **Execution Results:**
-   - When attempting to insert a product with a price of 1500, the price is automatically capped at 1000, ensuring it doesn't exceed the limit.
+   - When attempting to insert a product priced at 1500, the trigger correctly caps the price at 1000, ensuring adherence to pricing policies and preventing data integrity issues related to pricing inconsistencies.
 
 ### 3.2 Constraint: Adjust Employee Salary on Order Completion
 
-**Problem Description:**
-When an employee completes a new order, their salary increases by 5%; if hired before 1992, they receive an additional 3% increase (total 8%).
+**Problem Overview:**
+The trigger updates employee salaries based on order completion. Employees hired before 1992 receive an 8% salary increase, while others receive a 5% increase. This rule ensures that salary adjustments are systematically applied based on hire dates and order processing activities.
 
 - **Execution Results:**
-   - After inserting a new order into the `OrderMaster` table, the salary of the employee ("E2008005") is updated according to the defined salary adjustment rule.
+   - After inserting new orders, employee salaries are updated according to the specified rules, demonstrating effective use of triggers to implement business logic directly within the database.
 
 ### 4.1 Query: Top 20 Highest Paid Employees
 
-**Problem Description:**
-Retrieve the top 20 highest paid employees.
+**Problem Overview:**
+This query retrieves the top 20 highest-paid employees in descending order of their salaries, providing a quick way to evaluate compensation distribution within the organization.
 
 - **Execution Results:**
-   - The query returns a list of the top 20 highest-paid employees, ordered by salary in descending order.
+   - The query successfully returns a list of the top earners, enabling analysis of salary hierarchies and helping HR teams ensure competitive compensation for key employees.
 
 ### 4.2 Query: Insert New Customer
 
-**Problem Description:**
-Insert a new customer into the customer table.
+**Problem Overview:**
+The insertion query adds a new customer to the `Customer` table, capturing the customer's ID, name, address, and contact details.
 
 - **Execution Results:**
-   - A new customer ("Taikang Co., Ltd.") is successfully inserted into the `Customer` table, with all the provided details.
+   - A new customer, "Taikang Co., Ltd.", is successfully added to the database. This operation ensures that new customer data can be seamlessly integrated into the system, supporting customer relationship management (CRM) activities.
 
 ### 4.3 Deletion: Remove High-Salary Employees
 
-**Problem Description:**
-Remove employees whose salary is greater than 5000.
+**Problem Overview:**
+This deletion query removes employees with salaries exceeding 5000 from the `Employee` table. Such an operation may be necessary for compliance, cost control, or restructuring initiatives.
 
 - **Execution Results:**
-   - Employees with salaries over 5000 are successfully deleted from the `Employee` table.
+   - Employees with salaries over 5000 are successfully deleted from the database. The query highlights the importance of data management for compliance purposes and demonstrates how deletion queries can help in the maintenance of operational guidelines.
 
 ### 5. Dynamic SQL: Adjust Salary and Query Customer Information
 
-**Problem Description:**
-Increase the salary of all employees in the "Sales Department" by 200. Retrieve customer names, addresses, and phone numbers from the customer table.
+**Problem Overview:**
+This dynamic SQL procedure performs two key operations: it increases the salary of all employees in the "Sales Department" by 200, and it queries customer details (names, addresses, and phone numbers) from the `Customer` table.
 
 - **Execution Results:**
-   - The salary of all employees in the "Sales Department" is increased by 200. The customer details (names, addresses, and phone numbers) are retrieved from the `Customer` table.
+   - The salary adjustment is applied successfully to all sales department employees, and the customer data is retrieved without issues. This procedure showcases the power of dynamic SQL in automating complex updates and queries in a single execution.
 
 ## Database Structure
 
@@ -94,21 +94,31 @@ Increase the salary of all employees in the "Sales Department" by 200. Retrieve 
 
 ## Challenges Encountered and Solutions
 
-**Challenges:**
+### Challenges:
 
-- Handling complex joins in stored procedures.
-- Ensuring data integrity while enforcing constraints.
-- Performance optimization for large dataset queries.
+1. **Handling Complex Joins in Stored Procedures:**
+   - When writing stored procedures that involved multiple joins across different tables (such as in the `find` procedure), ensuring the logic was both correct and efficient proved to be challenging.
+   
+2. **Enforcing Data Integrity via Constraints:**
+   - Implementing constraints and triggers required careful consideration of the business logic. Ensuring that these were applied correctly without inadvertently breaking other parts of the system was critical.
 
-**Solutions:**
+3. **Optimizing Query Performance:**
+   - Working with large datasets meant that query performance was sometimes a concern, especially with aggregate functions or sorting operations on large tables. Ensuring queries executed within a reasonable time frame was crucial.
 
-- Used indexing strategies to improve query performance.
-- Implemented triggers and constraints to maintain data integrity.
-- Optimized stored procedures with efficient query design.
+### Solutions:
+
+1. **Indexing Strategies:**
+   - To address performance concerns, proper indexing was employed on frequently queried columns (such as `productNo` and `employeeNo`). This helped reduce query execution times, especially for complex join operations.
+
+2. **Use of Triggers and Constraints:**
+   - By embedding business logic within database triggers and constraints, we ensured automatic enforcement of rules like product price capping and employee salary adjustments. This reduced the need for external business logic and maintained data integrity within the database itself.
+
+3. **Query Optimization:**
+   - SQL query optimization techniques, such as using more efficient join types and aggregating data earlier in subqueries, helped reduce processing time for large datasets. Additionally, using `LIMIT` and `OFFSET` in SELECT queries helped minimize the amount of data retrieved, further optimizing performance.
 
 ## References and Acknowledgments
 
-- SQL Documentation
-- Database Systems Course Materials
-- Stack Overflow discussions on SQL query optimization
-- Consultation with peers and instructors
+- **SQL Documentation:**
+- **Database Systems Course Materials**
+- **Stack Overflow discussions on SQL query optimization**
+- **Consultation with peers and instructors**
