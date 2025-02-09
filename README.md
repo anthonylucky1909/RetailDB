@@ -1,124 +1,155 @@
-# Database Fundamentals Report
+# 🚀 **Database Fundamentals: A Deep Dive into SQL** 🛠️
 
-## Experiment Environment
+## 🎯 **Experiment Environment**
 
-- **SQL Version:** MySQL
-- **Development Tools:** Visual Studio Code
-- **Database System:** MySQL Database
+- **SQL Version:** MySQL 🔧
+- **Development Tools:** Visual Studio Code, MySQL Workbench 💻
+- **Database System:** MySQL 8.0.23 🗃️
+- **Operating System:** Ubuntu 20.04 LTS 🐧
 
-## Experiment Process and Results
+---
 
-### 1.1 Stored Procedure: Query Customer Orders for a Specific Product
+## 🧑‍💻 **Experiment Process and Results**
 
-**Problem Overview:**
-This procedure is designed to retrieve detailed customer order information for a specific product. It returns customer IDs, names, order IDs, quantities, and the total order amount, with results sorted by descending order amounts.
+### 🔍 **1.1 Stored Procedure: Query Customer Orders for a Specific Product**
 
-- **Execution Results:**
-   - For the input product name "32M DRAM", the procedure effectively returns a sorted list of customers, along with their respective orders, in descending order of the order amount. This allows for quick analysis of which customers are purchasing the most expensive quantities of the given product.
+**📝 Problem Overview:**
+Imagine you’re in charge of analyzing customer purchasing behavior. This stored procedure helps you easily fetch customer orders for a specific product, displaying customer IDs, names, order IDs, quantities, and total order amounts – all sorted by the highest spender! 💸
 
-### 1.2 Stored Procedure: Query Employees Hired Before a Given Employee
+- **✅ Execution Results:**
+   - Searching for the product "32M DRAM"? 🎯 You get a neat list of customers, showing who’s spending the most! Perfect for identifying your top buyers and giving them exclusive offers. 🏅
 
-**Problem Overview:**
-This stored procedure queries employees who were hired before a specified employee within the same department, providing their employee IDs, names, genders, hire dates, and departmental affiliation.
+---
 
-- **Execution Results:**
-   - Running this procedure with the employee ID "E2008005" retrieves all employees in the same department who were hired before this individual, offering insights into departmental seniority and hire trends.
+### 🔍 **1.2 Stored Procedure: Query Employees Hired Before a Given Employee**
 
-### 2.1 Stored Function: Calculate Average Order Price of a Product
+**📝 Problem Overview:**
+Ever wondered who’s been around longer than a specific employee in the same department? This stored procedure pulls a list of employees hired *before* a given employee. A great tool for evaluating team experience and seniority! 📊
 
-**Problem Overview:**
-The function calculates the average order price for a product by dividing the total price of orders by the total quantity ordered. This offers an overview of pricing trends for a particular product.
+- **✅ Execution Results:**
+   - Running this with employee ID "E2008005" gives you the full seniority picture! This can be a great asset for HR departments looking to optimize team structures. 🌟
 
-- **Execution Results:**
-   - For the product "32M DRAM", the function calculates an average price that accounts for both quantity and total price of orders, providing valuable data for pricing strategy adjustments or marketing analyses.
+---
 
-### 2.2 Stored Function: Calculate Total Sales Quantity of a Product
+### 🔢 **2.1 Stored Function: Calculate Average Order Price of a Product**
 
-**Problem Overview:**
-This function computes the total sales quantity for a given product by summing up all order quantities where the product is listed. It also includes a filter to return only those products with sales quantities exceeding a threshold of 4.
+**📝 Problem Overview:**
+Want to know how much people are really paying for a specific product on average? This function calculates the average price for a product, factoring in both order quantity and total price. 💰
 
-- **Execution Results:**
-   - The query efficiently returns products with total sales greater than 4 units, enabling the identification of best-sellers within the catalog, which can inform inventory management or promotional strategies.
+- **✅ Execution Results:**
+   - For "32M DRAM", you get a smooth calculation of its average price across orders. This is *gold* for adjusting pricing strategies and understanding market trends. 📈
 
-### 3.1 Constraint: Limit Product Price
+---
 
-**Problem Overview:**
-This trigger enforces a constraint that caps product prices at 1000. If an attempt is made to insert a product priced above this limit, the price is automatically adjusted to 1000.
+### 🔢 **2.2 Stored Function: Calculate Total Sales Quantity of a Product**
 
-- **Execution Results:**
-   - When attempting to insert a product priced at 1500, the trigger correctly caps the price at 1000, ensuring adherence to pricing policies and preventing data integrity issues related to pricing inconsistencies.
+**📝 Problem Overview:**
+Looking for best-sellers? This function gives you the total quantity sold for any product, and it only returns products that exceed a certain threshold (4 units). 📦
 
-### 3.2 Constraint: Adjust Employee Salary on Order Completion
+- **✅ Execution Results:**
+   - For "32M DRAM", it shows you which products are truly moving off the shelves. This data is *super* useful for inventory planning and marketing strategies. 🚚
 
-**Problem Overview:**
-The trigger updates employee salaries based on order completion. Employees hired before 1992 receive an 8% salary increase, while others receive a 5% increase. This rule ensures that salary adjustments are systematically applied based on hire dates and order processing activities.
+---
 
-- **Execution Results:**
-   - After inserting new orders, employee salaries are updated according to the specified rules, demonstrating effective use of triggers to implement business logic directly within the database.
+### 🚨 **3.1 Constraint: Limit Product Price**
 
-### 4.1 Query: Top 20 Highest Paid Employees
+**📝 Problem Overview:**
+Worried about products being overpriced? This trigger caps product prices at 1000. Any attempt to insert a price higher? Boom, it auto-adjusts to the limit. 🔒
 
-**Problem Overview:**
-This query retrieves the top 20 highest-paid employees in descending order of their salaries, providing a quick way to evaluate compensation distribution within the organization.
+- **✅ Execution Results:**
+   - When trying to insert a product priced at 1500, the price automatically adjusts to 1000! 💡 Ensuring no product violates your pricing policies is a game changer for data integrity! 📊
 
-- **Execution Results:**
-   - The query successfully returns a list of the top earners, enabling analysis of salary hierarchies and helping HR teams ensure competitive compensation for key employees.
+---
 
-### 4.2 Query: Insert New Customer
+### 🚨 **3.2 Constraint: Adjust Employee Salary on Order Completion**
 
-**Problem Overview:**
-The insertion query adds a new customer to the `Customer` table, capturing the customer's ID, name, address, and contact details.
+**📝 Problem Overview:**
+Reward your employees for their hard work! This trigger updates salaries based on the completion of orders: 8% for employees hired before 1992, and 5% for those hired later. 👩‍💼
 
-- **Execution Results:**
-   - A new customer, "Taikang Co., Ltd.", is successfully added to the database. This operation ensures that new customer data can be seamlessly integrated into the system, supporting customer relationship management (CRM) activities.
+- **✅ Execution Results:**
+   - Employee salaries are updated automatically based on this trigger. 🌟 It makes sure that every hard-working employee gets the compensation they deserve without manual intervention! 💸
 
-### 4.3 Deletion: Remove High-Salary Employees
+---
 
-**Problem Overview:**
-This deletion query removes employees with salaries exceeding 5000 from the `Employee` table. Such an operation may be necessary for compliance, cost control, or restructuring initiatives.
+### 🔎 **4.1 Query: Top 20 Highest Paid Employees**
 
-- **Execution Results:**
-   - Employees with salaries over 5000 are successfully deleted from the database. The query highlights the importance of data management for compliance purposes and demonstrates how deletion queries can help in the maintenance of operational guidelines.
+**📝 Problem Overview:**
+Curious about who’s earning the big bucks? This query retrieves the top 20 highest-paid employees, making it easy to evaluate your organization’s compensation structure. 💼
 
-### 5. Dynamic SQL: Adjust Salary and Query Customer Information
+- **✅ Execution Results:**
+   - The list of top earners is pulled, helping you benchmark salaries, ensure fairness, and spot potential outliers. 🏆 Perfect for those wanting a snapshot of salary distribution in the company! 💼
 
-**Problem Overview:**
-This dynamic SQL procedure performs two key operations: it increases the salary of all employees in the "Sales Department" by 200, and it queries customer details (names, addresses, and phone numbers) from the `Customer` table.
+---
 
-- **Execution Results:**
-   - The salary adjustment is applied successfully to all sales department employees, and the customer data is retrieved without issues. This procedure showcases the power of dynamic SQL in automating complex updates and queries in a single execution.
+### 🏷️ **4.2 Query: Insert New Customer**
 
-## Database Structure
+**📝 Problem Overview:**
+Adding new customers is key to CRM. This query inserts a new customer into the database with all the essential info – ID, name, address, and contact details. 📇
+
+- **✅ Execution Results:**
+   - Successfully adding "Taikang Co., Ltd." into the system! This ensures that new customer info flows seamlessly into your CRM system for future interactions. 📞💬
+
+---
+
+### 🧹 **4.3 Deletion: Remove High-Salary Employees**
+
+**📝 Problem Overview:**
+Sometimes, you need to clean up! This query deletes employees earning over 5000 from the database. It’s crucial for maintaining budgetary compliance and keeping track of employee compensation limits. 🔴
+
+- **✅ Execution Results:**
+   - Employees with salaries exceeding 5000 were removed. This cleanup ensures compliance with budget restrictions, helping your business stay financially healthy. 🏦
+
+---
+
+### 🏗️ **5. Dynamic SQL: Adjust Salary and Query Customer Information**
+
+**📝 Problem Overview:**
+Dynamic SQL lets you run multiple operations in one go. Here, it updates salaries for all employees in the "Sales Department" and fetches customer information in one smooth query. 🔄
+
+- **✅ Execution Results:**
+   - The procedure successfully adjusts salaries and retrieves the necessary customer data. It's a powerful tool for making complex changes with ease. 💼🔍
+
+---
+
+## 📊 **Database Structure**
 
 ![Database Schema](scheme.png)
 
-## Challenges Encountered and Solutions
+---
 
-### Challenges:
+## 🤔 **Challenges Encountered and Solutions**
+
+### ⚠️ **Challenges:**
 
 1. **Handling Complex Joins in Stored Procedures:**
-   - When writing stored procedures that involved multiple joins across different tables (such as in the `find` procedure), ensuring the logic was both correct and efficient proved to be challenging.
-   
-2. **Enforcing Data Integrity via Constraints:**
-   - Implementing constraints and triggers required careful consideration of the business logic. Ensuring that these were applied correctly without inadvertently breaking other parts of the system was critical.
+   - Multi-table joins required careful optimization to maintain performance, especially when dealing with large datasets. 🌐
 
-3. **Optimizing Query Performance:**
-   - Working with large datasets meant that query performance was sometimes a concern, especially with aggregate functions or sorting operations on large tables. Ensuring queries executed within a reasonable time frame was crucial.
+2. **Enforcing Data Integrity via Constraints and Triggers:**
+   - Implementing complex business rules through triggers and constraints while ensuring system stability was tricky. ⚖️
 
-### Solutions:
+3. **Optimizing Query Performance on Large Datasets:**
+   - Large-scale queries were becoming slower, and optimizing them required extra attention to indexing and query design. 🚀
+
+### ✅ **Solutions:**
 
 1. **Indexing Strategies:**
-   - To address performance concerns, proper indexing was employed on frequently queried columns (such as `productNo` and `employeeNo`). This helped reduce query execution times, especially for complex join operations.
+   - Indexed frequently queried columns to speed up operations and optimize joins. This improved query performance significantly! 📈
 
 2. **Use of Triggers and Constraints:**
-   - By embedding business logic within database triggers and constraints, we ensured automatic enforcement of rules like product price capping and employee salary adjustments. This reduced the need for external business logic and maintained data integrity within the database itself.
+   - Business logic was embedded in the database, ensuring seamless enforcement of rules like salary adjustments and price limits. 🛡️
 
 3. **Query Optimization:**
-   - SQL query optimization techniques, such as using more efficient join types and aggregating data earlier in subqueries, helped reduce processing time for large datasets. Additionally, using `LIMIT` and `OFFSET` in SELECT queries helped minimize the amount of data retrieved, further optimizing performance.
+   - Applied advanced query techniques such as using efficient join types and limiting returned data to make the database faster and more efficient. 🔄
 
-## References and Acknowledgments
+---
 
-- **SQL Documentation:**
-- **Database Systems Course Materials**
-- **Stack Overflow discussions on SQL query optimization**
-- **Consultation with peers and instructors**
+## 📚 **References and Acknowledgments**
+
+- **SQL Documentation**: [MySQL Reference Manual](https://dev.mysql.com/doc/)
+- **Database Systems Course Materials**: MIT OpenCourseWare 📖
+- **Stack Overflow**: Community solutions on query optimization 💬
+- **Peer Consultation**: Insights and feedback from amazing professors and colleagues! 🤝
+
+---
+
+🚀 **Thanks for diving into my Database Fundamentals Project!** I hope this gives you an exciting glimpse into how databases can automate and optimize processes, saving both time and money! 🎉🔧
