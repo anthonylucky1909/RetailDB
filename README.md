@@ -1,41 +1,189 @@
-# RetailDB: Online Retail Application Databases
+# Database Fundamentals Report
 
-## Project Overview
-This project focuses on building and managing databases for **online retail applications**, which are integral to the e-commerce sector. It includes SQL queries and scripts for analyzing and optimizing an online store's operations, such as customer management, product catalogs, and order processing.
+## Experiment Environment
 
-## Key Files
-- **OrderDB.sql**: The core SQL script for creating and managing the online store’s order-related data.
-- **exp2-solution-template.sql**: Solution template for database queries and analysis.
-- **question_4.py**: Python script to process data related to specific retail queries.
-- **question_5.py**: Another Python script for analyzing different aspects of retail data.
+- SQL
+- Visual Studio Code
 
-## Project Description
-The **Online Retail Application Databases** project focuses on the design and implementation of SQL-based databases to model the operations of an e-commerce platform. It aims to enhance **data management**, **customer interaction**, and **order tracking** through the use of optimized SQL queries, database normalization, and efficient relationship mapping. The project relies on various SQL operations, such as joins, subqueries, and aggregate functions, to facilitate data analysis and decision-making processes in online retail.
+## Experiment Process
 
-## Objective
-The goal is to create a fully functional **database schema** that supports various aspects of an online retail business, focusing on **customer management**, **inventory tracking**, and **order processing**. This includes:
-- Managing products, prices, and stock levels.
-- Handling customer information, orders, and payments.
-- Generating reports and insights on sales, stock levels, and customer behavior.
+### 1.1 Stored Procedure: Query Customer Orders for a Specific Product
 
-## Learning Outcomes
-1. Design and implement SQL databases for e-commerce applications.
-2. Use SQL to query, update, and manage retail data.
-3. Analyze and optimize retail data for decision-making.
-4. Write Python scripts to process and analyze retail database queries.
+**Problem Description:**
+The stored procedure retrieves customer ID, customer name, order ID, order quantity, and order amount for a given product name, sorted in descending order of order amount.
 
-## Technologies Used
-- **SQL** (Structured Query Language)
-- **Python** (for data processing and analysis)
-- **Database Management Systems (DBMS)**
+**Example Query for "32M DRAM" Orders:**
 
-## Installation
-1. Download the repository files.
-2. Set up a database system (e.g., MySQL, PostgreSQL).
-3. Execute the **OrderDB.sql** script to create the database schema.
-4. Use Python scripts to process and analyze the data.
-5. Refer to the **README.md** for detailed instructions on setting up and using the scripts.
+```sql
+CALL GetCustomerOrders('32M DRAM');
+```
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 1.2 Stored Procedure: Query Employees Hired Before a Given Employee
+
+**Problem Description:**
+The stored procedure retrieves employee ID, name, gender, hire date, and department for employees hired before the given employee ID in the same department.
+
+**Example Query for Employee "E2008005":**
+
+```sql
+CALL GetEarlierEmployees('E2008005');
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 2.1 Stored Function: Calculate Average Order Price of a Product
+
+**Problem Description:**
+The stored function returns the average order price for a given product name.
+
+**Example Query for All Products:**
+
+```sql
+SELECT productName, GetAveragePrice(productName) FROM Product;
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 2.2 Stored Function: Calculate Total Sales Quantity of a Product
+
+**Problem Description:**
+The stored function calculates the total sales quantity for a given product ID.
+
+**Example Query for Products with Sales Greater Than 4:**
+
+```sql
+SELECT productNo, productName, GetTotalSales(productNo)
+FROM Product HAVING GetTotalSales(productNo) > 4;
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 3.1 Constraint: Limit Product Price
+
+**Problem Description:**
+When inserting a product, if the price exceeds 1000, it should be set to 1000.
+
+**Validation Command:**
+
+```sql
+INSERT INTO Product (productNo, productName, productPrice) VALUES ('P1005', 'High-End Laptop', 1500);
+SELECT * FROM Product WHERE productNo = 'P1005';
+```
+
+**Validation Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 3.2 Constraint: Adjust Employee Salary on Order Completion
+
+**Problem Description:**
+When an employee completes a new order, their salary increases by 5%; if hired before 1992, they receive an additional 3% increase (total 8%).
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 4.1 Query: Top 20 Highest Paid Employees
+
+**SQL Query:**
+
+```sql
+SELECT employeeName, salary 
+FROM Employee 
+ORDER BY salary DESC 
+LIMIT 20;
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 4.2 Query: Insert New Customer
+
+**SQL Query:**
+
+```sql
+INSERT INTO Customer VALUES('C20080002', 'Taikang Co., Ltd.', '010-5422685', 'Tianjin', '220501');
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 4.3 Deletion: Remove High-Salary Employees
+
+**SQL Query:**
+
+```sql
+DELETE FROM Employee WHERE salary > 5000;
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+### 5. Dynamic SQL: Adjust Salary and Query Customer Information
+
+**Task:**
+
+1. Increase the salary of all employees in the "Sales Department" by 200.
+2. Retrieve customer names, addresses, and phone numbers from the customer table.
+
+**Example SQL Query:**
+
+```sql
+UPDATE Employee SET salary = salary + 200 WHERE department = 'Sales Department';
+SELECT customerName, customerAddress, customerPhone FROM Customer;
+```
+
+**Execution Results:**
+(To be filled with SQL execution results)
+
+---
+
+## Database Structure
+
+The database schema is provided in `scheme.png`.
+
+---
+
+## Challenges Encountered and Solutions
+
+**Challenges:**
+1. Handling complex joins in stored procedures.
+2. Ensuring data integrity while enforcing constraints.
+3. Performance optimization for large dataset queries.
+
+**Solutions:**
+1. Used indexing strategies to improve query performance.
+2. Implemented triggers and constraints to maintain data integrity.
+3. Optimized stored procedures with efficient query design.
+
+---
+
+## References and Acknowledgments
+
+- SQL Documentation
+- Database Systems Course Materials
+- Stack Overflow discussions on SQL query optimization
+- Consultation with peers and instructors
 
